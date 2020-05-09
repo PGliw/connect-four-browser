@@ -223,13 +223,14 @@ class GameComponent : RComponent<RProps, GameState>(), BoardOwner {
                             +"Głębokośc przszukiwania: "
                             input {
                                 attrs {
+                                    type = InputType.number
                                     min = "1"
                                     max = "5"
                                     value = state.searchDepth1Value
                                     onChangeFunction = {
                                         val target = it.target as HTMLInputElement
                                         setState {
-                                            state.searchDepth1Value = target.value
+                                            searchDepth1Value = target.value
                                         }
                                     }
                                 }
@@ -295,7 +296,7 @@ class GameComponent : RComponent<RProps, GameState>(), BoardOwner {
                                     onChangeFunction = {
                                         val target = it.target as HTMLInputElement
                                         setState {
-                                            state.searchDepth2Value = target.value
+                                            searchDepth2Value = target.value
                                         }
                                     }
                                 }
