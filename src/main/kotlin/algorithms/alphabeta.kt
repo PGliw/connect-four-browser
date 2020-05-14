@@ -20,7 +20,7 @@ private fun alphaBetaHelper(
 
     val assessment = board.assess()
 
-    val score: Int = when {
+    val score: Int? = when {
 
         // if terminal node then return actual assessment
         assessment != 0 -> {
@@ -55,9 +55,9 @@ private fun alphaBetaHelper(
             beta,
             heuristics,
             isLogging
-        ).second
+        )?.second
     }
-    return Pair(move, score)
+    return Pair(move, score ?: 0)
 }
 
 fun alphaBeta(
@@ -69,8 +69,9 @@ fun alphaBeta(
     beta: Int,
     heuristics: Board.() -> Int,
     isLogging: Boolean = false
-): Pair<Int, Int> {
+): Pair<Int, Int>? {
     val moveOptions = board.availableColumns()
+    if (moveOptions.isEmpty()) return null
     val childMovesWithScores = mutableListOf<Pair<Int, Int>>()
     var currentAlpha = alpha
     var currentBeta = beta
