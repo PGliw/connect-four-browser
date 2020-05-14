@@ -17,6 +17,8 @@ class Board(val fields: Array<Array<Int>>) {
         return Board(newFields)
     }
 
+    fun isEmpty() = fields.all { array -> array.all { it == 0 } }
+
     fun assess(): Int {
         // list of diagonals
         val diagonals = fields.diagonals()
